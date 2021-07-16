@@ -68,7 +68,7 @@ setup(
     install_requires=requires,
     tests_require=test_deps,
     extras_require=extras,
-    python_requires=">=3.6",
+    python_requires=">=2.7",
 
     entry_points={
         "console_scripts": [

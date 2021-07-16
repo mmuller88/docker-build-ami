@@ -7,7 +7,7 @@ Setup script for docker-build-ami
 from setuptools import setup, find_packages
 
 # VERSION MUST be defined on line 10
-VERSION = '0.7.0'
+VERSION = '0.7.1'
 
 with open('requirements.txt') as f:
     requires = f.read().splitlines()
@@ -34,7 +34,7 @@ with open('README.rst', 'r') as fh:
     long_description = fh.read()
 
 setup(
-    name='jamieleecho-docker-build-ami',
+    name='mmuller88-docker-build-ami',
     version=VERSION,
 
     description='Build Amazon EC2 AMI image using a Dockerfile',
@@ -42,7 +42,7 @@ setup(
     long_description_content_type='text/x-rst',
 
     # The project's main homepage.
-    url='https://github.com/jamieleecho/docker-build-ami.git',
+    url='https://github.com/mmuller88/docker-build-ami.git',
 
     # Author details
     author='Michael Persson',

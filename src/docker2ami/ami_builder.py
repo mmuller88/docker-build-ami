@@ -121,7 +121,8 @@ class AmiBuilder(object):
             raise RuntimeError(
                 f'Unable to find EC2: {reservation["ReservationId"]}')
         print(f'Instance: {self._instance["InstanceId"]}')
-        print(f'Instance IP: {self._instance["PrivateIpAddress"]}')
+        print(f'Private instance IP: {self._instance["PrivateIpAddress"]}')
+        print(f'Public instance IP: {self._instance["PublicIpAddress"]}')
         print(f'Connection SSH key: {self._key_path}')
 
         # Wait around for the EC2 to be running
@@ -138,7 +139,8 @@ class AmiBuilder(object):
         # Wait for the EC2 to be accessible via SSH
         stdout.write('\nWaiting for SSH to become ready.')
         stdout.flush()
-        while not _check_port(self._instance_obj.private_ip_address, 22):
+        # while not _check_port(self._instance_obj.private_ip_address, 22):
+        while not _check_port(self._instance_obj.public_ip_address, 22):
             stdout.write('.')
             stdout.flush()
             time.sleep(5)
@@ -147,7 +149,8 @@ class AmiBuilder(object):
         key = paramiko.RSAKey.from_private_key_file(self._key_path)
         self._ssh = paramiko.SSHClient()
         self._ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        self._ssh.connect(hostname=self._instance_obj.private_ip_address,
+        # self._ssh.connect(hostname=self._instance_obj.private_ip_address,
+        self._ssh.connect(hostname=self._instance_obj.public_ip_address,
                           username=self._config.image_user,
                           pkey=key)
 

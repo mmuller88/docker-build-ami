@@ -121,8 +121,8 @@ class AmiBuilder(object):
             raise RuntimeError(
                 f'Unable to find EC2: {reservation["ReservationId"]}')
         print(f'Instance: {self._instance["InstanceId"]}')
-        print(f'Private instance IP: {self._instance["PrivateIpAddress"]}')
-        print(f'Public instance IP: {self._instance["PublicIpAddress"]}')
+        print(f'Private instance IP!: {self._instance["PrivateIpAddress"]}')
+        #print(f'Public instance IP: {self._instance["PublicIpAddress"]}')
         print(f'Connection SSH key: {self._key_path}')
 
         # Wait around for the EC2 to be running
